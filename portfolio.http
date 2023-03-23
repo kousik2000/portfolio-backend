@@ -1,0 +1,31 @@
+GET http://localhost:5000/users
+
+###
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{   
+    "name":"kousik",
+    "username":"kousik22",
+    "password": "Kousik@123",
+    "gender": "Male"
+}
+
+###
+
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username":"kousik22",
+    "password": "Kousik@123"
+}
+
+###
+
+GET http://localhost:5000/blog
+
+###
+
+
+GET http://localhost:5000/portfolio
