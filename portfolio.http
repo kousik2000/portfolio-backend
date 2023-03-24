@@ -29,3 +29,14 @@ GET http://localhost:5000/blog
 
 
 GET http://localhost:5000/portfolio
+
+###
+
+POST http://localhost:5000/updateportfolio
+Content-Type: application/json
+
+{"id":"5",
+"title":"wikipedia search",
+"url":"https://kousikwikipedia.ccbp.tech/",
+"imageUrl":"https://i.ibb.co/QJjHyQB/wikipedia-search.jpg",
+"github":"https://codepen.io/Ramachandruni-Kousik/pen/mdGjmPo"}
