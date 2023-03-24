@@ -111,3 +111,54 @@ app.get("/portfolio/", async (request, response) => {
   const portfolioArray = await db.all(getPortfolioQuery);
   response.send(portfolioArray);
 });
+
+// post to portfolio
+
+app.post("/updateportfolio/", async (request, response) => {
+  const { id, title, url, imageUrl, github } = request.body;
+  const selectPortfolioQuery = `SELECT * FROM portfolio WHERE title = '${title}'`;
+  const dbTitle = await db.get(selectPortfolioQuery);
+  if (dbTitle === undefined) {
+    const createPortfolioQuery = `
+      INSERT INTO 
+        portfolio (id,title,url,imageUrl,github ) 
+      VALUES 
+        (
+          '${id}', 
+          '${title}',
+          '${url}', 
+          '${imageUrl}',
+          '${github}'
+        )`;
+    const dbResponse = await db.run(createPortfolioQuery);
+    response.send(`Created new portfolio`);
+  } else {
+    response.status = 400;
+    response.send("Title already exists");
+  }
+});
+
+// post to blog
+
+app.post("/updateblog/", async (request, response) => {
+  const { id, title, description, url } = request.body;
+  const selectBlogQuery = `SELECT * FROM blog WHERE title = '${title}'`;
+  const dbTitle = await db.get(selectPortfolioQuery);
+  if (dbTitle === undefined) {
+    const createBlogQuery = `
+      INSERT INTO 
+        blog ( id, title, description, url ) 
+      VALUES 
+        (
+          '${id}', 
+          '${title}',
+          '${description}', 
+          '${url}'
+        )`;
+    const dbResponse = await db.run(createBlogQuery);
+    response.send(`Created new blog`);
+  } else {
+    response.status = 400;
+    response.send("Title already exists");
+  }
+});
